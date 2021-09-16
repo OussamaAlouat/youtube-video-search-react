@@ -5,6 +5,8 @@ import SearchBar from './SearchBar';
 import './app.css'
 class App extends React.Component {
 
+  state = { videos: [] }
+
   onSearchSubmit = async (term) => {
     console.log(term)
     const response = await youtube.get('/search', {
@@ -13,7 +15,8 @@ class App extends React.Component {
       }
     });
 
-    console.log(response)
+    console.log(response.data.items)
+    this.setState({ videos: response.data.items })
   }
 
   render() {
@@ -22,6 +25,9 @@ class App extends React.Component {
         <Header />
         <div className="container">
           <SearchBar onSubmit={this.onSearchSubmit} />
+
+          I have { this.state.videos.length } videos
+
         </div>
       </div>
     );
