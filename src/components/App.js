@@ -2,7 +2,7 @@ import React from 'react';
 import youtube from '../api/youtube';
 import Header from './Header';
 import SearchBar from './SearchBar';
-
+import './app.css'
 class App extends React.Component {
 
   onSearchSubmit = async (term) => {
@@ -20,7 +20,9 @@ class App extends React.Component {
     return(
       <div>
         <Header />
-        <SearchBar onSubmit={this.onSearchSubmit} />
+        <div className="container">
+          <SearchBar onSubmit={this.onSearchSubmit} />
+        </div>
       </div>
     );
   }
