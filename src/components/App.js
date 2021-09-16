@@ -3,11 +3,16 @@ import Header from './Header';
 import SearchBar from './SearchBar';
 
 class App extends React.Component {
+
+  onSearchSubmit = async (term) => {
+    console.log(term)
+  }
+
   render() {
     return(
       <div>
         <Header />
-        <SearchBar />
+        <SearchBar onSubmit={this.onSearchSubmit} />
       </div>
     );
   }
