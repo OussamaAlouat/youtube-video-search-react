@@ -8,7 +8,13 @@ class SearchBar extends React.Component {
   }
 
   onKeyPressed = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && this.state.term !== '') {
+      this.props.onSubmit(this.state.term)
+    }
+  }
+
+  onClick = () =>  {
+    if (this.state.term !== '') {
       this.props.onSubmit(this.state.term)
     }
   }
@@ -22,7 +28,7 @@ class SearchBar extends React.Component {
         value={ this.state.term } onChange={ this.onInputChange }
         onKeyPress={this.onKeyPressed}
       />
-      <div className="ui button">Search</div>
+      <div className="ui button" onClick={this.onClick}>Search</div>
     </div>
     )
   }
