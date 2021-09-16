@@ -5,6 +5,7 @@ import SearchBar from './SearchBar';
 import VideoList from './VideoList';
 
 import './app.css';
+import VideoDetail from './VideoDetail';
 
 class App extends React.Component {
 
@@ -23,6 +24,7 @@ class App extends React.Component {
 
   onVideoSelect = (video) => {
     console.log('From the app', video);
+    this.setState({ selectedVideo: video })
   }
 
   render() {
@@ -30,7 +32,8 @@ class App extends React.Component {
       <div>
         <Header />
         <div className="container">
-          <SearchBar onSubmit={this.onSearchSubmit} />
+          <SearchBar onSubmit={ this.onSearchSubmit } />
+          <VideoDetail video={ this.state.selectedVideo } />
 
           <VideoList  videos={ this.state.videos } onVideoSelect={this.onVideoSelect}/>
         </div>
