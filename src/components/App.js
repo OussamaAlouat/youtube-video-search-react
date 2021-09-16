@@ -8,7 +8,7 @@ import './app.css';
 
 class App extends React.Component {
 
-  state = { videos: [] }
+  state = { videos: [], selectedVideo: null }
 
   onSearchSubmit = async (term) => {
     const response = await youtube.get('/search', {
@@ -20,6 +20,11 @@ class App extends React.Component {
     this.setState({ videos: response.data.items })
   }
 
+
+  onVideoSelect = (video) => {
+    console.log('From the app', video);
+  }
+
   render() {
     return(
       <div>
@@ -27,8 +32,7 @@ class App extends React.Component {
         <div className="container">
           <SearchBar onSubmit={this.onSearchSubmit} />
 
-          I have { this.state.videos.length } videos
-          <VideoList  videos={ this.state.videos } />
+          <VideoList  videos={ this.state.videos } onVideoSelect={this.onVideoSelect}/>
         </div>
       </div>
     );
