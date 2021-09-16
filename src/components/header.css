@@ -1,0 +1,8 @@
+.header-container {
+  min-height: 100px;
+  background-color: lightgray;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
