@@ -24,6 +24,10 @@ class App extends React.Component {
     })
   }
 
+  componentDidMount() {
+    this.onSearchSubmit('ada cardano')
+  }
+
 
   onVideoSelect = (video) => {
     this.setState({ selectedVideo: video })
