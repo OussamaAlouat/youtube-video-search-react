@@ -18,12 +18,18 @@ class App extends React.Component {
       }
     });
 
-    this.setState({ videos: response.data.items })
+    this.setState({
+      videos: response.data.items,
+      selectedVideo: response.data.items[0]
+    })
+  }
+
+  componentDidMount() {
+    this.onSearchSubmit('ada cardano')
   }
 
 
   onVideoSelect = (video) => {
-    console.log('From the app', video);
     this.setState({ selectedVideo: video })
   }
 
@@ -31,11 +37,20 @@ class App extends React.Component {
     return(
       <div>
         <Header />
-        <div className="container">
-          <SearchBar onSubmit={ this.onSearchSubmit } />
-          <VideoDetail video={ this.state.selectedVideo } />
-
-          <VideoList  videos={ this.state.videos } onVideoSelect={this.onVideoSelect}/>
+        <div className="ui container">
+          <div style={{ marginBottom: '10px' }}>
+            <SearchBar onSubmit={ this.onSearchSubmit } />
+          </div>
+          <div className="mt-10 ui grid">
+            <div className="ui row" >
+              <div className="eleven wide column">
+                <VideoDetail video={ this.state.selectedVideo } />
+              </div>
+              <div className="five wide column">
+                <VideoList  videos={ this.state.videos } onVideoSelect={this.onVideoSelect}/>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );
