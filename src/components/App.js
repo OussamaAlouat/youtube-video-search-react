@@ -18,7 +18,10 @@ class App extends React.Component {
       }
     });
 
-    this.setState({ videos: response.data.items,  selectedVideo: response.data.items[0] })
+    this.setState({
+      videos: response.data.items,
+      selectedVideo: response.data.items[0]
+    })
   }
 
 
@@ -31,8 +34,10 @@ class App extends React.Component {
       <div>
         <Header />
         <div className="ui container">
-          <SearchBar onSubmit={ this.onSearchSubmit } />
-          <div className="ui grid">
+          <div style={{ marginBottom: '10px' }}>
+            <SearchBar onSubmit={ this.onSearchSubmit } />
+          </div>
+          <div className="mt-10 ui grid">
             <div className="ui row" >
               <div className="eleven wide column">
                 <VideoDetail video={ this.state.selectedVideo } />
