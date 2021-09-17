@@ -37,7 +37,7 @@ class App extends React.Component {
     return(
       <div>
         <Header />
-        <div className="ui container">
+        <div className="container">
           <div style={{ marginBottom: '10px' }}>
             <SearchBar onSubmit={ this.onSearchSubmit } />
           </div>
