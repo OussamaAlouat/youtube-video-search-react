@@ -4,34 +4,25 @@ import Header from './Header';
 import SearchBar from './SearchBar';
 import VideoList from './VideoList';
 
+import useVideos from '../hooks/useVideos';
+
 import './app.css';
 import VideoDetail from './VideoDetail';
 
 const App = () => {
-  const [videos, setVideos] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
-
-  const onSearchSubmit = async (term) => {
-    const response = await youtube.get('/search', {
-      params: {
-          q: term
-      }
-    });
-
-    setVideos(response.data.items);
-    setSelectedVideo(response.data.items[0]);
-  }
+  const [videos, search] = useVideos('ada cardano');
 
   useEffect(() => {
-    onSearchSubmit('ada cardano')
-  }, [])
+    setSelectedVideo(videos[0]);
+  }, [videos])
 
   return(
     <div>
       <Header />
       <div className="container">
         <div style={{ marginBottom: '10px' }}>
-          <SearchBar onSubmit={onSearchSubmit} />
+          <SearchBar onSubmit={search} />
         </div>
         <div className="mt-10 ui grid">
           <div className="ui row" >
