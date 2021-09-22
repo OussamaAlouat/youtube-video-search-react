@@ -26,24 +26,20 @@ const App = () => {
     onSearchSubmit('ada cardano')
   }, [])
 
-  const onVideoSelect = (video) => {
-    setSelectedVideo(video);
-  }
-
   return(
     <div>
       <Header />
       <div className="container">
         <div style={{ marginBottom: '10px' }}>
-          <SearchBar onSubmit={ onSearchSubmit } />
+          <SearchBar onSubmit={onSearchSubmit} />
         </div>
         <div className="mt-10 ui grid">
           <div className="ui row" >
             <div className="eleven wide column">
-              <VideoDetail video={ selectedVideo } />
+              <VideoDetail video={selectedVideo} />
             </div>
             <div className="five wide column">
-              <VideoList  videos={ videos } onVideoSelect={onVideoSelect}/>
+              <VideoList  videos={ videos } onVideoSelect={setSelectedVideo}/>
             </div>
           </div>
         </div>
