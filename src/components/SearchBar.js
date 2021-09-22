@@ -1,37 +1,35 @@
-import React from 'react';
+import React, { useState  } from 'react';
 
-class SearchBar extends React.Component {
-  state = { term: '' }
+const SearchBar = (props) => {
+  const [term, setTerm] = useState('');
 
-  onInputChange = (event) => {
-    this.setState({ term: event.target.value })
+  const onInputChange = (event) => {
+    setTerm(event.target.value)
   }
 
-  onKeyPressed = (e) => {
-    if (e.key === 'Enter' && this.state.term !== '') {
-      this.props.onSubmit(this.state.term)
+  const onKeyPressed = (e) => {
+    if (e.key === 'Enter' && term !== '') {
+      props.onSubmit(term)
     }
   }
 
-  onClick = () =>  {
-    if (this.state.term !== '') {
-      this.props.onSubmit(this.state.term)
+  const onClick = () =>  {
+    if (term !== '') {
+      props.onSubmit(term)
     }
   }
 
-  render() {
-    return (
+  return (
     <div className="ui fluid action input">
       <input
         type="text"
         placeholder="Search..."
-        value={ this.state.term } onChange={ this.onInputChange }
-        onKeyPress={this.onKeyPressed}
+        value={ term } onChange={ onInputChange }
+        onKeyPress={onKeyPressed}
       />
-      <div className="ui button" onClick={this.onClick}>Search</div>
+      <div className="ui button" onClick={onClick}>Search</div>
     </div>
-    )
-  }
-}
+  )
+};
 
 export default SearchBar;
